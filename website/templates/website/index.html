@@ -1,0 +1,201 @@
+{% extends 'website/base.html' %}
+<!--
+Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+{% load static %}
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>{% block title %}World Unfold {% endblock %}</title>
+
+</head>
+
+<body>
+<!-- banner -->
+{% block href %}
+ <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse nav-wil" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav cl-effect-18" id="cl-effect-18">
+                            <li class="act"><a href="{% url 'index' %}" class="effect1 active">Home</a></li>
+                            <li><a href="{% url 'political' %}">Political</a></li>
+                            <li><a href="{% url 'breaking' %}">Breaking stories</a></li>
+                            <li><a href="{% url 'entertainment' %}">Entertainment</a></li>
+                            <li role="presentation" class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                                  Categories <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                      <li><a href="{% url 'political' %}">Political</a></li>
+                                      <li><a href="{% url 'entertainment' %}">Entertainment</a></li>
+                                      <li><a href="{% url 'sports' %}">Sports</a></li>
+                                      <li><a href="{% url 'technology' %}">Technology</a></li>
+                                      <li><a href="{% url 'business' %}">Business</a></li>
+                                      <li><a href="{% url 'health' %}">Health</a></li>
+                                      <li><a href="{% url 'lifestyle' %}">Life and Style</a></li>
+                                      <li><a href="{% url 'videos' %}">Videos</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="{% url 'contact' %}">Contact Us</a></li>
+                            <li><a href="{% url 'admin' %}">Admin</a></li>
+                            {% if request.user.is_authenticated %}
+                              <li role="presentation" class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                                   MORE<span class="caret"></span>
+                                </a>
+
+                                  <ul class="dropdown-menu">
+                                      <li><a href="{% url 'logout' %}">Logout</a></li>
+                                      <li><a href="{% url 'profile' %}">View Profile</a></li>
+                                    <li><a href="{% url 'edit_profile' %}">Edit Profile</a></li>
+                                    <li><a href="{% url 'change_password' %}">Change Password </a></li>
+
+                                </ul>
+                                  {% else %}
+                            <li><a href="{% url 'register' %}">Sign up</a></li>
+                            {% endif %}
+                            </li>
+                        </ul>
+                    </div><!-- /.navbar-collapse -->
+ {% endblock %}
+
+    {% block pagecontent %}
+
+					<!-- news-and-events -->
+
+                   <div class="news">
+					<div class="news-grids">
+						<div class="col-md-8 news-grid-left">
+							<h3>Latest News</h3>
+							<ul>
+								<li>
+
+										{% for element in elements %}
+									{{element| safe}}
+									{% endfor %}
+
+									<div class="clearfix"> </div>
+								</li>
+
+
+							</ul>
+                            <input type="button" value="Refresh Page" onClick="window.location.reload()">
+						</div>
+<!-- //latest news -->
+
+
+    <!-- //latest news -->
+
+                            <div class="col-md-4 news-grid-right">
+                                <div class="news-grid-rght1">
+                                <!-- Nav tabs -->
+                                  <ul class="nav nav-tabs" role="tablist">
+                                    <li role="presentation" class="active"><a class="high" href="#home" aria-controls="home" role="tab" data-toggle="tab">weather in London</a></li>
+                                    <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">edit location</a></li>
+                                  </ul>
+
+                                  <!-- Tab panes -->
+                                    <div class="tab-content">
+                                        <div role="tabpanel" class="tab-pane active london" id="home">
+                                            <ul>
+                                                <li>
+                                                    <h4>Wednesday</h4>
+                                                    <span></span>
+                                                    <p>21<sup>°</sup></p>
+                                                </li>
+                                                <li>
+                                                    <h4>Thursday</h4>
+                                                    <span class="moon"></span>
+                                                    <p>25<sup>°</sup></p>
+                                                </li>
+                                                <li>
+                                                    <h4>Friday</h4>
+                                                    <span class="sun"></span>
+                                                    <p>31<sup>°</sup></p>
+                                                </li>
+                                                <div class="clearfix"> </div>
+                                            </ul>
+                                        </div>
+                                        <div role="tabpanel" class="tab-pane" id="profile">
+                                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d26359652.109742895!2d-113.72446020222534!3d36.24602872499641!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54eab584e432360b%3A0x1c3bb99243deb742!2sUnited+States!5e0!3m2!1sen!2sin!4v1450786850582" frameborder="0" style="border:0" allowfullscreen></iframe>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="news-grid-rght2">
+                                    <h3>subscribe to our newsletter</h3>
+                                    <p>Get the latest news and updates by signing up to our daily newsletter.We won't sell your email or spam you !</p>
+                                    <form>
+                                        <input type="text" value="enter your Email address" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'enter your Email address';}">
+                                        <input type="submit" value="Submit">
+                                    </form>
+                                </div>
+
+
+
+
+
+                            </div>
+
+
+                            <div class="col-md-4 video-grids-right">
+						<div class="sap_tabs">
+							<div id="horizontalTab" style="display: block; width: 100%; margin: 0px;">
+								<ul class="resp-tabs-list">
+									<li class="resp-tab-item grid1" aria-controls="tab_item-0" role="tab"><span>most shared</span></li>
+									<li class="resp-tab-item grid2" aria-controls="tab_item-1" role="tab"><span>most read</span></li>
+									<div class="clear"></div>
+								</ul>
+								<div class="resp-tabs-container">
+									<div class="tab-1 resp-tab-content" aria-labelledby="tab_item-0">
+										{% for element in elements2 %}
+									{{element| safe}}
+									{% endfor %}
+
+									</div>
+									<div class="tab-1 resp-tab-content" aria-labelledby="tab_item-1">
+										{% for element in elements %}
+									{{element| safe}}
+									{% endfor %}
+
+									</div>
+								</div>
+								<script src="{% static 'js/easyResponsiveTabs.js' %}" type="text/javascript"></script>
+								<script type="text/javascript">
+									$(document).ready(function () {
+										$('#horizontalTab').easyResponsiveTabs({
+											type: 'default', //Types: default, vertical, accordion
+											width: 'auto', //auto or any width like 600px
+											fit: true   // 100% fit in a container
+										});
+									});
+								</script>
+							</div>
+						</div>
+					</div>
+
+
+
+
+						<div class="clearfix"> </div>
+					</div>
+				</div>
+
+                            <!--<div class="clearfix"> </div>-->
+                        <!--</div>-->
+
+                            <div class="clearfix"> </div>
+                        </div>
+                    </div>
+                <!-- //video-bottom-grids -->
+
+    <div class="com-heart"> </div>
+
+{% endblock %}
+<!-- footer -->
+
+<!-- //footer -->
+
+</body>
+</html>

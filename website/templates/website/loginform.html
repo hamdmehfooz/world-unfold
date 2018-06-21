@@ -1,0 +1,259 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+    <head>
+       {% block title %}Login{% endblock %}
+       <!-- loginform  -->
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="News Times Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- Custom Theme files -->
+{% load static %}
+<link href="{% static 'css/bootstrap.css' %}" rel="stylesheet" type="text/css" media="all" />
+<link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css" media="all" />
+<!-- js -->
+<script src="{% static 'js/jquery-1.11.1.min.js'%}"></script>
+<!-- //js -->
+<link href='//fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'>
+
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Login and Registration Form with HTML5 and CSS3" />
+        <meta name="keywords" content="html5, css3, form, switch, animation, :target, pseudo-class" />
+        <meta name="author" content="Codrops" />
+        <link rel="shortcut icon" href="../favicon.ico">
+        <link rel="stylesheet" type="text/css" href="{% static 'login/css/demo.css' %}" />
+        <link rel="stylesheet" type="text/css" href="{% static 'login/css/style.css' %}" />
+        <link rel="stylesheet" type="text/css" href="{% static 'login/css/animate-custom.css' %}" /> 
+    </head>
+    <body>
+
+
+<!-- banner -->
+
+
+<div class="banner1">
+        <div class="banner-info1">
+            <div class="container">
+                <nav class="navbar navbar-default">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                      </button>
+                        <div class="logo">
+                            <a class="navbar-brand" href="{% url 'index' %}"><span>WU</span> World Unfold</a>
+                        </div>
+                    </div>
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse nav-wil" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav cl-effect-18" id="cl-effect-18">
+                            <li class="act"><a href="{% url 'index' %}" class="effect1 active">Home</a></li>
+                            <li><a href="{% url 'political' %}">Political</a></li>
+                            <li><a href="{% url 'breaking' %}">Breaking stories</a></li>
+                            <li><a href="{% url 'entertainment' %}">Entertainment</a></li>
+                            <li role="presentation" class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                                  Categories <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                      <li><a href="{% url 'political' %}">Political</a></li>
+                                      <li><a href="{% url 'entertainment' %}">Entertainment</a></li>
+                                      <li><a href="{% url 'sports' %}">Sports</a></li>
+                                      <li><a href="{% url 'technology' %}">Technology</a></li>
+                                      <li><a href="{% url 'business' %}">Business</a></li>
+                                      <li><a href="{% url 'health' %}">Health</a></li>
+                                      <li><a href="{% url 'lifestyle' %}">Life and Style</a></li>
+                                      <li><a href="{% url 'videos' %}">Videos</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="{% url 'contact' %}">Contact Us</a></li>
+                            <li><a href="{% url 'loginform' %}">Sign Up | Login</a></li>
+                            <li><a href="{% url 'Admn' %}">Admin</a></li>
+                            
+                        </ul>
+                    </div><!-- /.navbar-collapse -->    
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+<!--banner  -->
+
+    
+    <div class="clearfix"> </div>
+
+            <div class="move-text">
+
+                <div class="breaking_news">
+                    <h2>Breaking News</h2>
+                </div>
+                <div class="marquee">
+                    <div class="marquee1"><a class="breaking" href="#">A 5-year-old boy who recently returned to the U.S from Ebola-stricken West Africa is under observation after experiencing a fever.</a></div>
+                    <div class="marquee2"><a class="breaking" href="#">The surprisingly successful president of the Philippines and peacemaking in the Philippines: Shaking it all up.</a></div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="clearfix"></div>
+                <script type="text/javascript" src="{% static 'js/jquery.marquee.js' %}"></script>
+                <script>
+                  $('.marquee').marquee({ pauseOnHover: true });
+                  //@ sourceURL=pen.js
+                </script>
+            </div>
+
+         
+
+<br>
+
+<!--{% if data %}-->
+<!--{% for k in data %}-->
+<!--{{k.name}}<br>-->
+<!--{{k.emailid}}<br>-->
+<!--{{k.password}}<br>-->
+
+<!--{% endfor %}-->
+<!--{% endif %}-->
+        <div class="container">
+           
+           
+            <section>
+                <div id="container_demo" >
+                    <!-- hidden anchor to stop jump http://www.css3create.com/Astuce-Empecher-le-scroll-avec-l-utilisation-de-target#wrap4  -->
+                    <a class="hiddenanchor" id="toregister"></a>
+                    <a class="hiddenanchor" id="tologin"></a>
+                    <div id="wrapper">
+                        <div id="login" class="animate form">
+                            <form method="post" action="" autocomplete="on">
+                                {% csrf_token %}
+                                <h1>Log in</h1>
+                                <p>
+                                    <label for="username" class="uname" data-icon="u" > Your email or username </label>
+                                    <input id="username" name="username" required="required" type="text" placeholder="myusername or mymail@mail.com"/>
+                                </p>
+                                <p>
+                                    <label for="password" class="youpasswd" data-icon="p"> Your password </label>
+                                    <input id="password" name="password" required="required" type="password" placeholder="eg. X8df!90EO" />
+                                </p>
+                                <p class="keeplogin">
+									<input type="checkbox" name="loginkeeping" id="loginkeeping" value="loginkeeping" />
+									<label for="loginkeeping">Keep me logged in</label>
+								</p>
+                                <p class="login button">
+                                    <input type="submit" value="Login" />
+								</p>
+                                <p class="change_link">
+									Not a member yet ?
+									<a href="#toregister" class="to_register">Join us</a>
+								</p>
+                            </form>
+                        </div>
+
+                        <div id="register" class="animate form">
+                            <form method="post" action="" autocomplete="on">
+                                {% csrf_token %}
+                                <h1> Sign up </h1>
+                                <p>
+                                    <label for="usernamesignup" class="uname" data-icon="u">Your username</label>
+                                    <input id="usernamesignup" name="usernamesignup" required="required" type="text" placeholder="mysuperusername690" />
+                                </p>
+                                <p>
+                                    <label for="emailsignup" class="youmail" data-icon="e" > Your email</label>
+                                    <input id="emailsignup" name="emailsignup" required="required" type="email" placeholder="mysupermail@mail.com"/>
+                                </p>
+                                <p>
+                                    <label for="passwordsignup" class="youpasswd" data-icon="p">Your password </label>
+                                    <input id="passwordsignup" name="passwordsignup" required="required" type="password" placeholder="eg. X8df!90EO"/>
+                                </p>
+                                <!--<p>-->
+                                    <!--<label for="passwordsignup_confirm" class="youpasswd" data-icon="p">Please confirm your password </label>-->
+                                    <!--<input id="passwordsignup_confirm" name="passwordsignup" required="required" type="password" placeholder="eg. X8df!90EO"/>-->
+                                <!--</p>-->
+                                <p class="signin button">
+									<input type="submit" value="Sign up"/>
+								</p>
+                                <p class="change_link">
+									Already a member ?
+									<a href="#tologin" class="to_register"> Go and log in </a>
+								</p>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+        </div>
+        <!-- footer-->
+        <div class="footer-top">
+            <div class="container">
+                <p>at least 150 missing and there dead in landslide after monsoon
+                    rains in central Sri Lanka, officials say <a href="#">http//example.com</a></p>
+            </div>
+        </div>
+        <div class="footer">
+            <div class="container">
+                <div class="footer-grids">
+                    <div class="col-md-4 footer-grid-left">
+                        <h3>twitter feed</h3>
+                        <ul>
+                            <li><a href="#">the moment an unlimited #antares rocket exploded seconds after launch
+                                <i>http//example.com</i></a><span>15 minutes ago</span></li>
+                            <li><a href="mailto:info@example.com" class="cols">@NASA</a> & <a href="mailto:info@example.com" class="cols">
+                                @orbital science</a> <a href="#">gathering data on failure #antares rocket bound
+                                for international space</a><span>45 minutes ago</span></li>
+                            <li><a href="#">ex-cabinet minister chris huhne loses legal challenge over $77,750
+                                court costs incurred in speeding points</a><span>1 day ago</span></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4 footer-grid-left">
+                        <h3>contact form</h3>
+                        <form>
+                            <input type="text" value="enter your full name" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'enter your full name';}" required="">
+                            <input type="email" value="enter your email address" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'enter your email address';}" required="">
+                            <textarea onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Message...';}" required="">Message...</textarea>
+                            <input type="submit" value="Submit" >
+                        </form>
+                    </div>
+                    <div class="col-md-4 footer-grid-left">
+                        <h3>about us</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.
+                            <span>But I must explain to you how all this mistaken idea of denouncing
+                            pleasure and praising pain was born and I will give you a complete
+                            account of the system, and expound the actual teachings of the
+                            great explorer.</span>
+                            <i>- The Entire TLG Team</i></p>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+                <div class="footer-bottom">
+                    <div class="footer-bottom-left">
+                        <!-- <p>&copy 2016 News Times. All rights reserved | Template by <a href="http://w3layouts.com/">W3layouts.</a></p> -->
+                        <p>&copy 2018 World Unfold. All rights reserved.</p>
+                    </div>
+                    <div class="footer-bottom-right">
+                        <ul>
+                            <li><a href="#" class="icon-button twitter"><i class="icon-twitter"></i><span></span></a></li>
+                            <li><a href="#" class="icon-button google"><i class="icon-google"></i><span></span></a></li>
+                            <li><a href="#" class="icon-button v"><i class="icon-v"></i><span></span></a></li>
+                        </ul>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+            </div>
+        </div>
+
+       
+<!-- for bootstrap working -->
+    <script src="js/bootstrap.js"></script>
+<!-- //for bootstrap working -->
+    </body>
+</html>

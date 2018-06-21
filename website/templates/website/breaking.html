@@ -1,0 +1,275 @@
+<!--
+Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+{% extends 'website/base.html' %}
+{% load static %}
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>{% block title %}Breaking Stories{% endblock %}</title>
+
+</head>
+
+<body>
+{% block href %}
+
+ <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse nav-wil" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav cl-effect-18" id="cl-effect-18">
+                            <li><a href="{% url 'index' %}">Home</a></li>
+                            <li><a href="{% url 'political' %}">Political</a></li>
+                            <li class="act"><a href="{% url 'breaking' %}" class="effect1 active">Breaking stories</a></li>
+                            <li><a href="{% url 'entertainment' %}">Entertainment</a></li>
+                            <li role="presentation" class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                                  Categories <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                      <li><a href="{% url 'political' %}">Political</a></li>
+                                      <li><a href="{% url 'entertainment' %}">Entertainment</a></li>
+                                      <li><a href="{% url 'sports' %}">Sports</a></li>
+                                      <li><a href="{% url 'technology' %}">Technology</a></li>
+                                      <li><a href="{% url 'business' %}">Business</a></li>
+                                      <li><a href="{% url 'health' %}">Health</a></li>
+                                      <li><a href="{% url 'lifestyle' %}">Life and Style</a></li>
+                                      <li><a href="{% url 'videos' %}">Videos</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="{% url 'contact' %}">Contact Us</a></li>
+                            <li><a href="{% url 'admin' %}">Admin</a></li>
+							{% if request.user.is_authenticated %}
+                              <li role="presentation" class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                                   MORE<span class="caret"></span>
+                                </a>
+
+                                  <ul class="dropdown-menu">
+                                      <li><a href="{% url 'logout' %}">Logout</a></li>
+                                      <li><a href="{% url 'profile' %}">View Profile</a></li>
+                                    <li><a href="{% url 'edit_profile' %}">Edit Profile</a></li>
+                                    <li><a href="{% url 'change_password' %}">Change Password </a></li>
+
+                                </ul>
+                                  {% else %}
+                            <li><a href="{% url 'register' %}">Sign up</a></li>
+                            {% endif %}
+                            </li>
+                        </ul>
+                    </div><!-- /.navbar-collapse -->
+ {% endblock %}
+
+{% block pagecontent %}
+
+			<!-- news-and-events -->
+
+				<div class="news">
+					<div class="news-grids">
+						<div class="col-md-8 news-grid-left">
+							<h3>Breaking</h3>
+							<ul>
+								<li>
+
+										{% for element in elements %}
+									{{element| safe}}
+									{% endfor %}
+
+									<div class="clearfix"> </div>
+								</li>
+							</ul>
+							<input type="button" value="Refresh Page" onClick="window.location.reload()">
+						</div>
+<!-- //latest news -->
+
+
+
+<div class="col-md-4 video-grids-right">
+						<div class="sap_tabs">
+							<div id="horizontalTab" style="display: block; width: 100%; margin: 0px;">
+								<ul class="resp-tabs-list">
+									<li class="resp-tab-item grid1" aria-controls="tab_item-0" role="tab"><span>most shared</span></li>
+									<li class="resp-tab-item grid2" aria-controls="tab_item-1" role="tab"><span>most read</span></li>
+									<div class="clear"></div>
+								</ul>
+								<div class="resp-tabs-container">
+									<div class="tab-1 resp-tab-content" aria-labelledby="tab_item-0">
+										{% for element in elements2 %}
+									{{element| safe}}
+									{% endfor %}
+
+									</div>
+									<div class="tab-1 resp-tab-content" aria-labelledby="tab_item-1">
+										{% for element in elements %}
+									{{element| safe}}
+									{% endfor %}
+
+									</div>
+								</div>
+								<script src="{% static 'js/easyResponsiveTabs.js' %}" type="text/javascript"></script>
+								<script type="text/javascript">
+									$(document).ready(function () {
+										$('#horizontalTab').easyResponsiveTabs({
+											type: 'default', //Types: default, vertical, accordion
+											width: 'auto', //auto or any width like 600px
+											fit: true   // 100% fit in a container
+										});
+									});
+								</script>
+							</div>
+						</div>
+					</div>
+
+
+
+
+						<div class="clearfix"> </div>
+					</div>
+				</div>
+<!-- comments -->
+
+				<div class="single">
+		<div class="container">
+			<div class="single-grid">
+				<div class="col-md-8 blog-left">
+					<div class="blog-left-grid">
+						<div class="response">
+							<h4>Responses</h4>
+							{% for post in query %}
+							<div class="media response-info">
+								<div class="media-left response-text-left">
+									<a href="#">
+										<img class="media-object" src="{% static 'images/icon1.png' %}" alt=""/>
+									</a>
+									<h5><a href="#">{{post.name}}</a></h5>
+								</div>
+								<div class="media-body response-text-right">
+									<p>{{post.comment}}</p>
+									<ul>
+										<li>December 31, 2015</li>
+									</ul>
+								</div>
+								<div class="clearfix"> </div>
+							</div>
+							{% endfor %}
+						</div>
+						<div class="coment-form">
+							<h4>Leave your comment</h4>
+							<form method="post" action="/savecomment/?news_type={{news_type}}">
+								{% csrf_token %}
+								<input type="text" name="name" value="Name " onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Name';}" required="">
+								<input type="email" name="email" value="Email (will not be published)*" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email (will not be published)*';}" required="">
+								<input type="text" name='website' value="Website" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Website';}" required="">
+								<textarea type="text"  name='comment' onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Your Comment...';}" required="">Your Comment...</textarea>
+								<input type="submit" value="Submit Comment" >
+							</form>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4 blog-right">
+
+					<div class="recent">
+						<h3>Recent Comments</h3>
+						<div class="recent-grids">
+							<div class="recent-grid">
+								<div class="wom">
+									<a href="#"><img src="{% static 'images/6.jpg' %}" alt=" " class="img-responsive" /></a>
+								</div>
+								<div class="wom-right">
+									<h4><a href="#">Integer rutrum ante eu</a></h4>
+									<p>Mauris fermentum dictum magna. Sed laoreet aliquam leo.
+										Ut tellus dolor, dapibus eget.</p>
+								</div>
+								<div class="clearfix"> </div>
+							</div>
+							<div class="recent-grid">
+								<div class="wom">
+									<a href="#"><img src="{% static 'images/7.jpg' %}" alt=" " class="img-responsive" /></a>
+								</div>
+								<div class="wom-right">
+									<h4><a href="#">Integer rutrum ante eu</a></h4>
+									<p>Mauris fermentum dictum magna. Sed laoreet aliquam leo.
+										Ut tellus dolor, dapibus eget.</p>
+								</div>
+								<div class="clearfix"> </div>
+							</div>
+							<div class="recent-grid">
+								<div class="wom">
+									<a href="#"><img src="{% static 'images/8.jpg' %}" alt=" " class="img-responsive" /></a>
+								</div>
+								<div class="wom-right">
+									<h4><a href="#">Integer rutrum ante eu</a></h4>
+									<p>Mauris fermentum dictum magna. Sed laoreet aliquam leo.
+										Ut tellus dolor, dapibus eget.</p>
+								</div>
+								<div class="clearfix"> </div>
+							</div>
+						</div>
+					</div>
+					<div class="footer-top-grid1">
+						<h3>Recent Tags</h3>
+						<ul class="tag2">
+							<li><a href="#">awesome</a></li>
+							<li><a href="#">strategy</a></li>
+							<li><a href="#">development</a></li>
+						</ul>
+						<ul class="tag2">
+							<li><a href="#">css</a></li>
+							<li><a href="#">photoshop</a></li>
+							<li><a href="#">photography</a></li>
+							<li><a href="#">html</a></li>
+						</ul>
+						<ul class="tag2">
+							<li><a href="#">awesome</a></li>
+							<li><a href="#">strategy</a></li>
+							<li><a href="#">development</a></li>
+						</ul>
+						<ul class="tag2">
+							<li><a href="#">css</a></li>
+							<li><a href="#">photoshop</a></li>
+							<li><a href="#">photography</a></li>
+							<li><a href="#">html</a></li>
+						</ul>
+						<ul class="tag2">
+							<li><a href="#">awesome</a></li>
+							<li><a href="#">strategy</a></li>
+							<li><a href="#">development</a></li>
+						</ul>
+					</div>
+<!-- 					<div class="poll">
+						<h3>Poll</h3>
+							<div class="progress p">
+							  <div class="progress-bar bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+								60%
+							  </div>
+							</div>
+							<div class="progress p">
+							  <div class="progress-bar bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 80%;">
+								80%
+							  </div>
+							</div>
+							<div class="progress p">
+							  <div class="progress-bar bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 90%;">
+								90%
+							  </div>
+							</div>
+							<div class="progress p">
+							  <div class="progress-bar bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 40%;">
+								40%
+							  </div>
+							</div>
+					</div> -->
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+		</div>
+	</div>
+
+{% endblock %}
+<!-- //comments -->
+
+<!-- footer -->
+<!-- //for bootstrap working -->
+</body>
+</html>
